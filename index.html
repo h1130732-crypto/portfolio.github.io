@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人學習歷程作品集</title>
+    <style>
+        /* 基礎變數與重設 */
+        :root {
+            --primary-color: #2563eb; /* 主題藍色 */
+            --text-color: #1f2937;    /* 深灰文字 */
+            --bg-color: #f8fafc;      /* 淺灰背景 */
+            --card-bg: #ffffff;       /* 卡片白色 */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        /* 導覽列 */
+        nav {
+            background-color: var(--card-bg);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        nav .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* 滿版主視覺 / 自我介紹 */
+        header {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #cbd5e1; /* 預設灰色區塊，可自行換成圖片網址 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+        }
+
+        /* 主要區塊樣式 */
+        section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* 作品集網格卡片 */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .card-img {
+            height: 180px;
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-tag {
+            display: inline-block;
+            background-color: #eff6ff;
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+
+        .card-text {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 聯絡資訊與頁尾 */
+        .contact-info {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #0f172a;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        /* RWD 手機版優化 */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 3rem 1.5rem;
+            }
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">我的學習歷程</div>
+        <ul>
+            <li><a href="#about">關於我</a></li>
+            <li><a href="#portfolio">作品成果</a></li>
+            <li><a href="#contact">聯絡我</a></li>
+        </ul>
+    </nav>
+
+    <header id="about">
+        <div class="header-content">
+            <h1>哈囉！我是 [你的名字]</h1>
+            <p>
+                這裡是一句能代表你的核心理念。例如：「我是一名熱愛自主學習與程式開發的高中生，專注於利用科技解決生活中的不便，並持續在探索網頁前端的道路上努力。」
+            </p>
+            <a href="#portfolio" class="btn">查看我的作品成果</a>
+        </div>
+        <div class="profile-img">
+            <span>【放個人照】</span>
+        </div>
+    </header>
+
+    <section id="portfolio">
+        <h2>作品與多元表現</h2>
+        <div class="portfolio-grid">
+            
+            <div class="card">
+                <div class="card-img">【作品防空圖/主視覺】</div>
+                <div class="card-body">
+                    <span class="card-tag">自主學習</span>
+                    <h3 class="card-title">Python 基礎網頁爬蟲實作</h3>
+                    <p class="card-text">利用高一自主學習時間，從零開始自學 Python，成功做出一個可以自動抓取學校官網公告的爬蟲程式。</p>
+                    <a href="#" style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem; font-weight: 500;">閱讀歷程心得 &rarr;</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">【作品防空圖/主視覺】</div>
+                <div class="card-body">
+                    <span class="card-tag">學科表現</span>
+                    <h3 class="card-title">探究與實作：探討碳酸飲料對牙齒的影響</h3>
+                    <p class="card-text">在小組中擔任組長，負責實驗規劃與數據分析。透過控制變因法，成功在校內發表會獲得優選。</p>
+                    <a href="#" style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem; font-weight: 500;">閱讀歷程心得 &rarr;</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">【作品防空圖/主視覺】</div>
+                <div class="card-body">
+                    <span class="card-tag">多元表現</span>
+                    <h3 class="card-title">資訊社 副社長經歷</h3>
+                    <p class="card-text">負責籌辦校內黑客松體驗營，協調講師與 50 位學員，並在過程中鍛鍊了跨部門溝通與活動企劃能力。</p>
+                    <a href="#" style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem; font-weight: 500;">閱讀歷程心得 &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" style="background-color: #fff; border-radius: 0.5rem; margin-bottom: 2rem;">
+        <h2>聯絡我</h2>
+        <div class="contact-info">
+            <p>如果您對我的學習歷程有興趣，或有任何建議，歡迎透過以下方式與我聯繫：</p>
+            <p style="margin-top: 1rem; font-weight: bold; color: var(--primary-color);">Email: yourname@example.com</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 [你的名字] 的學習歷程. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
